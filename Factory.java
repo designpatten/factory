@@ -32,6 +32,23 @@ class NYPizzaStore extends PizzaStore{
 	}
 }
 
+class ChicagoPizzaStore extends PizzaStore{
+	Pizza createPizza(String type){
+		if (type.equals("cheese")) {
+			return new ChicagoCheesePizza();
+		}else if(type.equals("veggie")){
+			return new ChicagoVeggiePizza();
+		}else if(type.equals("clam")){
+			return new ChicagoClamPizza();	
+		}else if(type.equals("pepperoni")){
+			return new ChicagoPepperoniPizza();
+		}else{
+			return null;
+		}
+		
+	}
+}
+
 abstract class Pizza{
 	String name;
 	String dough;	//面团
@@ -101,17 +118,69 @@ class NYPepperoniPizza extends Pizza{
 	}
 }
 
+class ChicagoCheesePizza extends Pizza{
+	public ChicagoCheesePizza(){
+		this.name = "Chicago Style Sauce and Cheese Pizza";
+		this.dough = "Thin Crust Dough";
+		this.sauce = "Marinara Sauce";
+
+		toppings.add("Grated Reggiano Cheese");
+	}
+}
+
+class ChicagoVeggiePizza extends Pizza{
+	public ChicagoVeggiePizza(){
+		this.name = "Chicago Style Sauce and Viggie Pizza";
+		this.dough = "Thin Crust Dough";
+		this.sauce = "Marinara Sauce";
+
+		toppings.add("Grated Reggiano Veggie");	
+	}
+}
+
+class ChicagoClamPizza extends Pizza{
+	public ChicagoClamPizza(){
+		this.name = "Chicago Style Sauce and Clam Pizza";
+		this.dough = "Thin Crust Dough";
+		this.sauce = "Marinara Sauce";
+
+		toppings.add("Grated Reggiano Clam");	
+	}
+}
+
+class ChicagoPepperoniPizza extends Pizza{
+	public ChicagoPepperoniPizza(){
+		this.name = "Chicago Style Sauce and Pepperoni Pizza";
+		this.dough = "Thin Crust Dough";
+		this.sauce = "Marinara Sauce";
+
+		toppings.add("Grated Reggiano Pepperoni");	
+	}
+}
+
 
 public class Factory{
 	public static void main(String[] args) {
-		PizzaStore pizzaStore = new NYPizzaStore();
-		pizzaStore.orderPizza("cheese");
+		PizzaStore nyPizzaStore = new NYPizzaStore();
+		nyPizzaStore.orderPizza("cheese");
 		System.out.println("");
-		pizzaStore.orderPizza("veggie");
+		nyPizzaStore.orderPizza("veggie");
 		System.out.println("");
-		pizzaStore.orderPizza("clam");
+		nyPizzaStore.orderPizza("clam");
 		System.out.println("");
-		pizzaStore.orderPizza("pepperoni");
+		nyPizzaStore.orderPizza("pepperoni");
+
+
+		PizzaStore chicagoPizzaStore = new ChicagoPizzaStore();
+		chicagoPizzaStore.orderPizza("cheese");
+		System.out.println("");
+		chicagoPizzaStore.orderPizza("veggie");
+		System.out.println("");
+		chicagoPizzaStore.orderPizza("clam");
+		System.out.println("");
+		chicagoPizzaStore.orderPizza("pepperoni");
+
+
 	}
 }
 
